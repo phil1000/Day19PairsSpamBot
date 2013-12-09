@@ -2,8 +2,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class Crawler implements Runnable {
-
+public class Crawler {
+//public class Crawler implements Runnable {
 	private String[] websites;
 	private int webCount;
 	private String[] emails;
@@ -23,14 +23,14 @@ public class Crawler implements Runnable {
 		emailCount=0;
 	}
 	
-    public void run(Spambot caller) {
+    /*public void run(Spambot caller) {
 		// get the latest URL from the URL Unread Queue
 		String webAddress = caller.getNextURL();
 		// now process the website
 		crawlSite(webAddress);
 		caller.putURLs(websites); // pass a string array	
 		caller.putEmails(emails);
-	}
+	}*/
 	
 	public static void main(String[] args) {
 		Crawler script = new Crawler();
@@ -51,7 +51,7 @@ public class Crawler implements Runnable {
 			String inputLine;
 			while ((inputLine = in.readLine()) != null) {
 				getSites(inputLine);
-				getEmails(inputLine);
+				//getEmails(inputLine);
 			}
 			in.close();
 		} catch (FileNotFoundException ex) {
@@ -72,11 +72,13 @@ public class Crawler implements Runnable {
 	public void getSites(String inputLine) {
 		Scanner scanner = new Scanner(inputLine);
 		scanner.findInLine("<a href");
-		
-		
+		scanner.useDelimiter("<");
+		while (scanner.hasNext())
+			System.out.println(scanner.next());
+  }
 		//while (scanner.hasNext("<a href") { .. }
 	}
 	
-	public void getEmails(String inputLine) {
-	}
+	/*public void getEmails(String inputLine) {
+	}*/
 }
