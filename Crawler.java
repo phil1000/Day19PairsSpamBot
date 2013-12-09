@@ -70,13 +70,12 @@ public class Crawler {
 	}
 	
 	public void getSites(String inputLine) {
-		Scanner scanner = new Scanner(inputLine);
-		scanner.findInLine("<a href");
-		scanner.useDelimiter("<");
-		while (scanner.hasNext())
-			System.out.println(scanner.next());
-  }
-		//while (scanner.hasNext("<a href") { .. }
+		Scanner s = new Scanner(inputLine);
+		s.findInLine("(\\d+) fish (\\d+) fish (\\w+) fish (\\w+)");
+		MatchResult result = s.match();
+		for (int i=1; i<=result.groupCount(); i++)
+			System.out.println(result.group(i));
+		s.close(); 
 	}
 	
 	/*public void getEmails(String inputLine) {
